@@ -296,7 +296,7 @@ def start(login, depth=2):
 
     if manager.address in BaseProxy._address_to_local:
 
-        del BaseProxy._address_to_local[address][0].connection
+        del BaseProxy._address_to_local[manager.address][0].connection
 
     links = [link for link in links]
 
