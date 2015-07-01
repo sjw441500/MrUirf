@@ -76,7 +76,9 @@ if __name__ == "__main__":
 
 	print "make decision"
 
-	filters.start(similarity_matrix, nodes_g, nodes_t)
+	result=filters.start(similarity_matrix, nodes_g, nodes_t)
+
+	print str(result)
 
 
 
