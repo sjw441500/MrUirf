@@ -11,7 +11,7 @@ import argparse
 import networkx
 import itertools
 import multiprocessing
-
+from multiprocessing.managers import BaseProxy
 from lxml import html
 from networkx.readwrite import json_graph
 
@@ -32,7 +32,7 @@ def retrieve(url, requester):
     while 1:
 
         try:
-            print url
+            
             response = requester.get(url)
 
             if 200 == response.status_code:
@@ -233,10 +233,13 @@ def worker(login, depth, requester, nodes, links, tasks, lock, indices):
                     links.append({"source":current_indices, "target":nodes[tmpu]})
 
 def start(login, depth=2):
-
-    nodes = multiprocessing.Manager().dict()
+    manager = multiprocessing.Manager()
+    
+    nodes = manager.dict()
+    
     tasks = multiprocessing.Queue()
-    links = multiprocessing.Manager().list()
+    
+    links = manager.list()
 
     lock = multiprocessing.Lock()
 
@@ -290,6 +293,10 @@ def start(login, depth=2):
     sorted_nodes = sorted(dict(nodes).items(), key=operator.itemgetter(1))
 
     nodes = [{"name":node[0][0], "group":node[0][1]} for node in sorted_nodes]
+
+    if manager.address in BaseProxy._address_to_local:
+
+        del BaseProxy._address_to_local[address][0].connection
 
     links = [link for link in links]
 
