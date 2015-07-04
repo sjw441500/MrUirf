@@ -15,18 +15,10 @@ def cal_similarity_matrix(g, t, iterations=100):
 
         m=numpy.linalg.norm(tmp)
 
-        if m==0:
+        if not m and not math.isnan(tmp/m):
+
+            tmp=tmp/m
             
-            tmp=0
-
-        else:
-            
-            tmp = tmp / m
-
-            if math.isnan(tmp):
-
-                tmp=0
-
         s = tmp
 
     return tmp
