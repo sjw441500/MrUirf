@@ -3,6 +3,7 @@
 import numpy
 import random
 import argparse
+import math
 
 def cal_similarity_matrix(g, t, iterations=100):
 
@@ -12,7 +13,19 @@ def cal_similarity_matrix(g, t, iterations=100):
 
         tmp = numpy.dot(numpy.dot(t, s), g.transpose()) + numpy.dot(numpy.dot(t.transpose(), s), g)
 
-        tmp = tmp / numpy.linalg.norm(tmp)
+        m=numpy.linalg.norm(tmp)
+
+        if m==0:
+            
+            tmp=0
+
+        else:
+            
+            tmp = tmp / m
+
+            if math.isnan(tmp):
+
+                tmp=0
 
         s = tmp
 
