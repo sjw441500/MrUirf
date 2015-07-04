@@ -233,13 +233,16 @@ def worker(login, depth, requester, nodes, links, tasks, lock, indices):
                     links.append({"source":current_indices, "target":nodes[tmpu]})
 
 def start(login, depth=2):
-    manager = multiprocessing.Manager()
-    
-    nodes = manager.dict()
-    
+    nodes = multiprocessing.Manager().dict()
     tasks = multiprocessing.Queue()
+    links = multiprocessing.Manager().list()
+    #manager = multiprocessing.Manager()
     
-    links = manager.list()
+    #nodes = manager.dict()
+    
+    #tasks = multiprocessing.Queue()
+    
+    #links = manager.list()
 
     lock = multiprocessing.Lock()
 
@@ -294,9 +297,9 @@ def start(login, depth=2):
 
     nodes = [{"name":node[0][0], "group":node[0][1]} for node in sorted_nodes]
 
-    if manager.address in BaseProxy._address_to_local:
+    #if manager.address in BaseProxy._address_to_local:
 
-        del BaseProxy._address_to_local[manager.address][0].connection
+       # del BaseProxy._address_to_local[manager.address][0].connection
 
     links = [link for link in links]
 
