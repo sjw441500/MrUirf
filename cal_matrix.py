@@ -3,11 +3,13 @@
 import numpy
 import random
 import argparse
-import math
+
 
 def cal_similarity_matrix(g, t, iterations=100):
 
-    s = numpy.ones((t.shape[0], g.shape[0]), dtype=numpy.int64)
+    x=(t.shape[0], g.shape[0])
+
+    s = numpy.ones(x, dtype=numpy.int64)
 
     for i in range(iterations):
 
@@ -15,7 +17,7 @@ def cal_similarity_matrix(g, t, iterations=100):
 
         m=numpy.linalg.norm(tmp)
 
-        if m and not math.isnan(tmp/m):
+        if m :
 
             tmp=tmp/m
 
