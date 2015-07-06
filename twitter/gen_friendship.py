@@ -297,6 +297,8 @@ def start(login, depth=2):
 
     nodes = [{"name":node[0][0], "group":node[0][1]} for node in sorted_nodes]
 
+    print 'nodes lenth '+ str(len(nodes))
+
     #if manager.address in BaseProxy._address_to_local:
 
        # del BaseProxy._address_to_local[manager.address][0].connection
@@ -308,6 +310,8 @@ def start(login, depth=2):
         if {"source":link["target"], "target":link["source"]} not in links:
 
             links.remove(link)
+
+    print 'links lenth '+str(len(links))
 
     data = {"nodes":nodes, "links":links}
 
