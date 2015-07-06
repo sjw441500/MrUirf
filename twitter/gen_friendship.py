@@ -299,6 +299,7 @@ def start(login, depth=2):
 
     print 'nodes lenth '+ str(len(nodes))
 
+
     #if manager.address in BaseProxy._address_to_local:
 
        # del BaseProxy._address_to_local[manager.address][0].connection
@@ -313,7 +314,11 @@ def start(login, depth=2):
 
     print 'links lenth '+str(len(links))
 
+    
+
     data = {"nodes":nodes, "links":links}
+
+    print str(data)
 
     graph = json_graph.node_link_graph(data, directed=False, multigraph=False)
 
