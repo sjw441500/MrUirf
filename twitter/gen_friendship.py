@@ -322,7 +322,14 @@ def start(login, depth=2):
 
     nodelenth=len(data['nodes'])
 
+    temp=[]
+
     for d in data['links']:
+
+        temp.append[d]
+
+
+    for d in temp:
 
         if d['source']>=nodelenth or d['target']>=nodelenth:
 
