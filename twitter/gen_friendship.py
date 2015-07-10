@@ -315,7 +315,6 @@ def start(login, depth=2):
     print 'links lenth '+str(len(links))
 
     
-
     data = {"nodes":nodes, "links":links}
 
     #print str(data)
@@ -326,17 +325,13 @@ def start(login, depth=2):
 
     for d in data['links']:
 
-        temp.append[d]
-
+        temp.append(d)
 
     for d in temp:
 
         if d['source']>=nodelenth or d['target']>=nodelenth:
 
             data['links'].remove(d)
-
-
-
 
     graph = json_graph.node_link_graph(data, directed=False, multigraph=False)
 
